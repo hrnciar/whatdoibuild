@@ -416,6 +416,7 @@ python-Naked
 python-Pallets-Sphinx-Themes
 python-PyLEMS
 python-PyLink
+python-PyMuPDF
 python-PyMySQL
 python-PyPDF2
 python-PyRSS2Gen
@@ -426,6 +427,7 @@ python-QtPy
 python-ROPGadget
 SoapySDR
 python-tgscheduler
+python-Traits::bootstrap:::
 python-WSGIProxy2
 python-XStatic
 python-XStatic-Angular
@@ -743,6 +745,7 @@ python-cerberus
 python-cerealizer
 python-certifi
 python-cffi
+python-cffsubr
 python-cfgv
 python-cftime
 python-chai
@@ -752,6 +755,7 @@ python-charset-normalizer
 python-check-manifest
 python-cheetah
 python-cheroot
+python-cherrypy:tests::::
 python-chirpstack-api
 pychromecast
 python-ciso8601
@@ -835,6 +839,7 @@ pycolumnize
 python-commandparse
 python-compal
 compose-utils
+python-compreffor
 python-conda-package-handling
 python-configargparse
 python-configobj
@@ -922,6 +927,7 @@ python-debian
 python-debianbts
 python-debrepo
 python-deconz
+python-decopatch:tests::::
 python-decorator
 python-defcon
 python-defusedxml
@@ -1157,6 +1163,7 @@ python-flufl-testing
 python-fluidity-sm
 fmf
 folly
+python-fontMath
 python-fontconfig
 python-fontname
 fonttools
@@ -1363,6 +1370,7 @@ python-ipgetter
 python-ipgetter2
 python-ipmi
 python-iptools
+ipython:check-doc::::
 python-ipython_genutils
 python-ironicclient
 iscsi-initiator-utils
@@ -1696,6 +1704,8 @@ python-name-that-hash
 python-nanoid
 python-natlas-libnmap
 python-natsort
+python-nbclient:check::::
+python-nbconvert:check-doc::::
 python-nbformat
 python-ncclient
 python-ndg_httpsclient
@@ -1734,6 +1744,7 @@ python-notario
 notcurses
 python-notify2
 notmuch
+nototools
 python-nptyping
 python-npyscreen
 python-nrf24
@@ -1866,6 +1877,7 @@ python-pifpaf
 python-pigpio
 python-pika
 python-pillow
+python-pip:doc-tests::::
 python-pipdeptree
 python-pivy
 python-pkgconfig
@@ -2092,6 +2104,7 @@ python-pyqt5-sip
 python-pyqt6-sip
 python-pyqtchart
 python-pyqtgraph
+python-pyquery:tests::::
 python-pyrad
 python-pyrfc3339
 python-pyro
@@ -2677,6 +2690,7 @@ python-u-msgpack-python
 python-ua-parser
 python-uamqp
 udiskie
+python-ufoLib2
 python-uinput
 python-ujson
 python-ukkonen
@@ -2782,6 +2796,7 @@ python-wikipedia
 python-winacl
 python-winsspi
 python-wloc
+woffTools
 python-wrapt
 python-wsaccel
 python-wsproto
@@ -2833,6 +2848,7 @@ python-zake
 zanata-python-client
 python-zanata2fedmsg
 python-zaqarclient
+python-zbase32::bootstrap:::
 python-zc-lockfile
 zeitgeist
 python-zeroconf
