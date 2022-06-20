@@ -324,6 +324,7 @@ mock
 module-build
 modulemd-tools
 mom
+monkeytype
 mopidy
 mopidy-mpd
 mozo
@@ -435,6 +436,7 @@ ptpython
 puddletag
 pulsecaster
 pungi
+py3status
 pybugz
 pychess
 pydeps
@@ -504,7 +506,6 @@ python-QtPy
 python-ROPGadget
 SoapySDR
 python-tgscheduler
-python-Traits::bootstrap:::
 TurboGears2
 python-WSGIProxy2
 python-XStatic
@@ -678,6 +679,7 @@ python-astral
 python-astroid
 astrometry
 python-astroplan
+python-astropy:check::::
 python-astropy-healpix
 python-astropy-helpers
 python-astroquery
@@ -1115,6 +1117,8 @@ csound
 python-css-parser
 python-cssmin
 python-cssselect
+python-cssselect2
+python-cssutils
 python-cups
 python-curio
 python-curtsies
@@ -1272,6 +1276,7 @@ python-docs-theme
 python-docutils
 python-dogpile-cache
 dogtail
+python-doit
 dolfin
 python-dominate
 python-dotenv
@@ -1510,6 +1515,7 @@ python-gnupg
 pygobject3
 gofer
 google-api-python-client
+python-google-api-core:tests::::
 python-google-auth
 google-auth-httplib2
 python-google-auth-oauthlib
@@ -1618,6 +1624,7 @@ python-hyperframe
 python-hyperlink
 python-hypothesis
 python-hypothesis-fspaths
+python-hypothesmith
 i2c-tools
 python-i3ipc
 python-ibm-cloud-sdk-core
@@ -1671,6 +1678,7 @@ python-ipgetter
 python-ipgetter2
 python-ipmi
 python-iptools
+python-ipykernel
 ipython
 python-ipython_genutils
 python-ipywidgets
@@ -1830,6 +1838,7 @@ libchewing
 python-libcloud
 libcomps
 concordance
+python-libcst:tests::::
 python-libdiscid
 libdnet
 python-libevdev
@@ -1965,6 +1974,7 @@ python-mercantile
 python-mergedeep
 python-messaging
 python-metaextract
+python-metakernel
 python-metar
 python-metno
 metrics2mqtt
@@ -2051,6 +2061,7 @@ python-mystrom
 python-nagiosplugin
 python-name-that-hash
 python-nanoid
+python-nashpy
 python-natlas-libnmap
 python-natsort
 python-nb2plots
@@ -2075,7 +2086,6 @@ python-netifaces
 python-netmiko
 python-network-runner
 python-networkmanager
-python-networkx::bootstrap:::
 python-neurodsp
 python-neurom
 python-neurotune
@@ -2083,6 +2093,7 @@ newt
 nftables
 python-niapy
 python-nibabel
+python-nikola
 python-nine
 python-nipy
 nispor
@@ -2131,6 +2142,7 @@ python-oauth
 python-oauth2
 python-oauth2client
 python-oauthlib
+python-octave-kernel
 python-odata-query
 odfpy
 python-odml
@@ -2519,6 +2531,7 @@ python-pypcapkit
 python-pypck
 python-pyperclip
 python-pypet
+python-pyphen
 python-pypillowfight
 python-pypng
 python-pyprocdev
@@ -3156,7 +3169,6 @@ python-tosca-parser
 totpcgi
 python-towncrier
 python-tox-current-env
-python-tqdm:tests::::
 tracer
 trademgen
 python-traitlets
@@ -3242,6 +3254,7 @@ python-urwid-readline
 python-urwidtrees
 python-user-agents
 python-userpath
+python-usort
 python-utils
 python-utmp
 python-uvloop
@@ -3305,6 +3318,7 @@ python-wavio
 python-wcag-contrast-ratio
 python-wcmatch
 python-wcwidth
+weasyprint
 python-webcolors
 python-webencodings
 python-webob
@@ -3395,7 +3409,6 @@ python-zake
 zanata-python-client
 python-zanata2fedmsg
 python-zaqarclient
-python-zbase32::bootstrap:::
 python-zc-lockfile
 python-zeep
 zeitgeist
