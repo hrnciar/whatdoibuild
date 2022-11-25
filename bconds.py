@@ -263,7 +263,7 @@ def handle_exisitng_srpm(repopath, *, was_updated):
 def handle_exisitng_koji_id(repopath, *, was_updated):
     koji_id_path = repopath / KOJI_ID_FILENAME
     if koji_id_path.exists():
-        if was_updated:
+        if False:
             koji_id_path.unlink()
             return None
         else:
