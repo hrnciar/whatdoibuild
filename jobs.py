@@ -21,6 +21,9 @@ EXCLUDED_COMPONENTS = (
     'python3.10',
     'python3.11',
 )
+EXTRA_COMPONENTS = (
+    'python3-docs',
+)
 
 
 class ReverseLookupDict(collections.defaultdict):
@@ -117,7 +120,7 @@ def packages_built(new_deps, *, excluded_components=()):
     return components
 
 
-def are_all_done(*, packages_to_check, all_components, components_done, blocker_counter):
+def are_all_done(*, packages_to_check, all_components, components_done, blocker_counter, loop_detector):
     """
     Given a collection of (binary) packages_to_check, and dicts of all_components and components_done,
     returns True if ALL packages_to_check are considered "done" (i.e. installable).
@@ -161,8 +164,37 @@ def are_all_done(*, packages_to_check, all_components, components_done, blocker_
         blocker_counter['single'][blocking_components.pop()] += 1
     elif 1 < len(blocking_components) < 10:  # this is an arbitrarily chosen number to avoid cruft
         blocker_counter['combinations'][tuple(sorted(blocking_components))] += 1
+    loop_detector[component] = sorted(blocking_components)
     return all_available
 
+
+def _sort_loop(loop):
+    index = loop.index(min(loop))
+    return tuple(loop[index:] + loop[:index+1])
+
+
+def _detect_loop(loop_detector, probed_component, depchain, loops, seen):
+    for component in loop_detector[probed_component]:
+        seen.add(component)
+        if component in PACKAGES_BCONDS:
+            # we assume bconds are manually crafted not to have loops
+            continue
+        if loop_detector.get(component, []) == []:
+            continue
+        if component in depchain:
+            loops.add(_sort_loop(depchain[depchain.index(component):]))
+            continue
+        _detect_loop(loop_detector, component, depchain + [component], loops, seen)
+
+def report_blocking_components(loop_detector):
+    loops = set()
+    seen = set()
+    for component in loop_detector:
+        if component not in seen:
+            _detect_loop(loop_detector, component, [component], loops, seen)
+    log('\nDetected dependency loops:')
+    for loop in sorted(loops, key=lambda t: -len(t)):
+        log('    • ' + ' → '.join(loop))
 
 if __name__ == '__main__':
     # this is spaghetti code that will be split into functions later:
@@ -170,6 +202,8 @@ if __name__ == '__main__':
     from bconds import PACKAGES_BCONDS, bcond_cache_identifier, extract_buildrequires_if_possible
 
     components = packages_to_rebuild(OLD_DEPS, excluded_components=EXCLUDED_COMPONENTS)
+    for component in EXTRA_COMPONENTS:
+        components[component] = []
     components_done = packages_built(NEW_DEPS, excluded_components=EXCLUDED_COMPONENTS)
     binary_rpms = components.all_values()
 
@@ -178,6 +212,7 @@ if __name__ == '__main__':
         'single': collections.Counter(),
         'combinations': collections.Counter(),
     }
+    loop_detector = {}
 
     for component in components:
         if len(sys.argv) > 1 and component not in sys.argv[1:]:
@@ -194,10 +229,13 @@ if __name__ == '__main__':
             all_components=components,
             components_done=components_done,
             blocker_counter=blocker_counter,
+            loop_detector=loop_detector,
         )
 
         if ready_to_rebuild:
-            print(component)
+            # XXX make this configurable
+            if True: #  component not in components_done:
+                print(component)
         elif component in PACKAGES_BCONDS:
             for config in PACKAGES_BCONDS[component]:
                 config['id'] = bcond_cache_identifier(component, config)
@@ -215,9 +253,11 @@ if __name__ == '__main__':
                         all_components=components,
                         components_done=components_done,
                         blocker_counter=blocker_counter,
+                        loop_detector=loop_detector,
                     )
                     if ready_to_rebuild:
-                        print(config['id'])
+                        if True: #  component not in components_done:
+                            print(config['id'])
                 else:
                     log(f' • {config["id"]} bcond SRPM not present yet, skipping')
 
@@ -232,3 +272,5 @@ if __name__ == '__main__':
     log('\nThe 20 most commonly last-blocking small combinations of components are:')
     for components, count in blocker_counter['combinations'].most_common(20):
         log(f'{count:>5} {", ".join(components)}')
+
+    report_blocking_components(loop_detector)
